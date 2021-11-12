@@ -1,6 +1,6 @@
 ---
 -
-  name: Gather vlan info
+  name: Gather Device information
   hosts: devices
   connection: ansible.netcommon.network_cli
   gather_facts: yes 
