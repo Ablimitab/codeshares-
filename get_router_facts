@@ -14,7 +14,7 @@
      - name: Store VLAN facts to file
        copy: 
           content: "{{ansible_network_resources}}"
-          dest: "{{ inventory_hostname }}_configured_interfaces.txt"
+          dest: "{{ inventory_hostname }}_configuration.txt"
 
      - name: display
        debug:
