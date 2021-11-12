@@ -1,0 +1,31 @@
+---
+-
+  name: Gather vlan info
+  hosts: devices
+  connection: ansible.netcommon.network_cli
+  gather_facts: yes 
+
+
+  tasks: 
+     - name: get vlan information
+       cisco.ios.ios_facts: 
+
+                 
+                 
+             
+     - name: Store VLAN facts to file
+       copy: 
+          content: "{{ansible_network_resources}}"
+          dest: "/Users/admin/ansible/backup/{{ inventory_hostname }}.txt"
+     - name: display
+       debug:
+         msg: "{{ansible_net_interfaces}}"
+
+     - name: Display version
+       debug: msg="{{ansible_net_version}}"
+     - name: Display IPv4 addresses
+       debug: msg= "{{ansible_net_all_ipv4_addresses}}"
+
+         
+...
+
