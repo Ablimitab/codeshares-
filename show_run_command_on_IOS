@@ -1,0 +1,23 @@
+---
+- name: Gather vlan info
+  hosts: routers
+  connection: ansible.netcommon.network_cli
+  gather_facts: no 
+
+
+  tasks: 
+
+     - name: running config of the device 
+       cisco.ios.ios_command:
+             commands: show run 
+       register: result
+
+
+     - name: Store configured hostname in a local file
+       ansible.builtin.copy:
+           content: "{{result.stdout[0]}}\n"
+           dest: "{{ inventory_hostname }}_running_config.txt"
+       delegate_to: localhost
+          
+
+...
