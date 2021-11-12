@@ -1,6 +1,6 @@
 ---
 -
-  name: Gather vlan info
+  name: Gather routers interfaces
   hosts: routers
   connection: ansible.netcommon.network_cli
   gather_facts: yes 
