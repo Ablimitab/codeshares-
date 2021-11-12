@@ -1,0 +1,27 @@
+---
+- name: configure OSPF 
+  hosts: network_devices
+  gather_facts: no
+  connection: ansible.netcommon.network_cli
+
+  tasks:
+    - name: Enable ospf process
+      cisco.ios.ios_config:
+            lines: router ospf 1
+
+
+- name: Configure BGP 
+  hosts: routers  
+  gather_facts: no 
+  connection: ansible.netcommon.network_cli
+  tasks:
+    - name: Enable BGP process
+      cisco.ios.ios_config:
+             lines: router bgp 65000
+
+    - name: Enable BGP IPv4 unicast address family
+      cisco.ios.ios_config:
+            lines: address-family ipv4 unicast
+            parents: router bgp 65000
+            save_when: modified
+...
