@@ -1,0 +1,14 @@
+---
+-
+  name: Gather vlan info
+  hosts: routers
+  connection: ansible.netcommon.network_cli
+  gather_facts: yes 
+
+
+  tasks: 
+     - name: Get device information
+       ansible.builtin.debug:
+               var: ansible_facts["net_interfaces"]
+...
+
