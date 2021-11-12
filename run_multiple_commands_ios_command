@@ -1,0 +1,23 @@
+---
+-
+  name: Gather vlan info
+  hosts: MPLS_routers
+  connection: ansible.netcommon.network_cli
+  gather_facts: yes 
+
+
+  tasks: 
+      - name: run multiple commands and evaluate the output
+        cisco.ios.ios_command:
+          commands:
+              - show version
+              - show interfaces
+          wait_for:
+              - result[0] contains IOS
+              - result[1] contains Loopback999
+        register: result
+
+      - name: display result
+        debug: var=result.stdout_lines
+
+...
